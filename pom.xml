@@ -9,8 +9,28 @@
     <version>1.0-SNAPSHOT</version>
 
     <name>Example of basic Maven project to integrate with SonarQube</name>
+    <distributionManagement>
 
-    <dependencies>
+            <repository>
+              <id>nexus</id>
+              <name>Walmart Releases Nexus Repository</name>
+              <url>http://172.31.23.255:8081/repository/release-repo/</url>
+            </repository>
+
+            <snapshotRepository>
+              <id>nexus</id>
+              <name>Walmart Snapshot Nexus Repository </name>
+              <url>http://172.31.23.255:8081/repository/snapshot-repo/</url>
+            </snapshotRepository>
+
+</distributionManagement>
+
+	<dependencies>
+		<dependency>
+ 			<groupId>com.mt</groupId>
+  			<artifactId>mail</artifactId>
+  			<version>1.0.0</version>
+		</dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -18,7 +38,13 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+	<repositories>
+                <repository>
+                        <id>nexus</id>
+                        <name>Remote Repo</name>
+                        <url>http://172.31.23.255:8081/repository/group-repo/</url>
+                </repository>
+</repositories>
     <build>
         <pluginManagement>
             <plugins>
@@ -49,9 +75,15 @@
             </activation>
             <properties>
                 <!-- Optional URL to server. Default value is http://localhost:9000 -->
-                <sonar.host.url>
-                    http://localhost:9000
-                </sonar.host.url>
+		<sonar.host.url>
+                    http://172.31.21.117:9000
+		</sonar.host.url>
+		<sonar.login>
+                    squ_b34befc9c401148ed8197f27268d023a9289d710
+		</sonar.login>
+		<!--	<sonar.password>
+		    root123
+		</sonar.password> --> 
             </properties>
         </profile>
         <profile>
